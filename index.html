@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #24323a;
+      background-color: #f5f5f0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 20px;
+      background-color: #24323a;
+      color: white;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-left: auto;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+
+    nav a.active {
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    #theme-button {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0;
+      padding: 20px;
+    }
+
+    section {
+      padding: 30px 0;
+    }
+
+    .dark-mode {
+      color: #f5f5f0;
+      background-color: #1c2a30;
+    }
+
+    #progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 10;
+    }
+
+    #progress-bar {
+      width: 0;
+      height: 100%;
+      background-color: #cb694b;
+    }
+
+    #back-to-top {
+      display: none;
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #back-to-top.visible {
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      main {
+        padding: 16px;
+      }
+
+      section {
+        padding: 24px 0;
+      }
+    }
+  </style>
+
+  <script src="index.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>My Portfolio</h1>
+
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About Me</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button id="theme-button" type="button">Switch theme</button>
+  </header>
+
+  <div id="progress-track" aria-hidden="true">
+    <div id="progress-bar"></div>
+  </div>
+
+  <main>
+    <section id="home">
+      <h2>Home</h2>
+      <p id="greeting">Hello! My name is Karen Ong Xin Tze. Welcome to my portfolio.</p>
+    </section>
+
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I am a third-year student studying Multimedia Computing at the University
+        of Malaysia Sarawak (UNIMAS). My interests include exploring the latest
+        trends in web design, as well as playing volleyball and badminton.
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>My projects will be added here as I complete them.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Phone Number: +6019-9990000
+      </p>
+      <p>Email address: 104621@siswa.unimas.my</p>
+    </section>
+  </main>
+
+  <button id="back-to-top" type="button" aria-label="Back to top">
+    Back to top ↑
+  </button>
+</body>
+</html>
