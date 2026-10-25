@@ -5,12 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Portfolio</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       color: #24323a;
-      background-color: #f5f5f0;
+      background-color: #f4f1E8;
+    }
+
+    #greeting {
+      color: #000000;
+      font-family: "DM Serif Display", Georgia, serif;
+      font-size: 1.5rem;
     }
 
     header {
@@ -41,24 +51,33 @@
       font-weight: bold;
     }
 
-    #theme-button {
-      padding: 8px 12px;
-      cursor: pointer;
-    }
-
     main {
-      max-width: 800px;
+      width: 100%;
+      max-width: none;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
 
     section {
-      padding: 30px 0;
+      max-width: 800px;
+      padding: 30px 20px;
     }
 
-    .dark-mode {
-      color: #f5f5f0;
-      background-color: #1c2a30;
+    .banner-image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    #about {
+      max-width: none;
+      padding: 0;
+    }
+
+    #about img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     #progress-track {
@@ -96,13 +115,14 @@
       }
 
       main {
-        padding: 16px;
+        padding: 0;
       }
 
       section {
-        padding: 24px 0;
+        padding: 24px 16px;
       }
     }
+
   </style>
 
   <script src="index.js" defer></script>
@@ -119,7 +139,6 @@
       <a href="#contact">Contact</a>
     </nav>
 
-    <button id="theme-button" type="button">Switch theme</button>
   </header>
 
   <div id="progress-track" aria-hidden="true">
@@ -128,17 +147,20 @@
 
   <main>
     <section id="home">
-      <h2>Home</h2>
-      <p id="greeting">Hello! My name is Karen Ong Xin Tze. Welcome to my portfolio.</p>
+      <p id="greeting">Hello! My name is Karen Ong . Welcome to my portfolio.</p>
     </section>
 
+    <img
+     class="banner-image"
+     src="karen_banner.png"
+     alt="A handwritten banner that says Hello, I am Karen! Own your story."
+>
+
     <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I am a third-year student studying Multimedia Computing at the University
-        of Malaysia Sarawak (UNIMAS). My interests include exploring the latest
-        trends in web design, as well as playing volleyball and badminton.
-      </p>
+      <img
+       src="about_karen.jpg"
+       alt="About Karen: background, skills, and experience"
+      >
     </section>
 
     <section id="projects">
@@ -148,14 +170,15 @@
 
     <section id="contact">
       <h2>Contact</h2>
-      <p>Phone Number: +6019-9990000
-      </p>
-      <p>Email address: 104621@siswa.unimas.my</p>
+      <p>Email address: <a href="mailto:104621@siswa.unimas.my">104621@siswa.unimas.my</a></p>
     </section>
   </main>
 
   <button id="back-to-top" type="button" aria-label="Back to top">
     Back to top ↑
   </button>
+
+  <footer>© <span id="current-year"></span> Karen Ong</footer>
+
 </body>
 </html>

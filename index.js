@@ -3,27 +3,14 @@ const greeting = document.querySelector("#greeting");
 const hour = new Date().getHours();
 
 if (hour < 12) {
-  greeting.textContent = "Good morning ! Welcome to KAREN ONG XIN TZE portfolio.";
+  greeting.textContent = "Good morning! Welcome to My Portfolio.";
 } else if (hour < 18) {
-  greeting.textContent = "Good afternoon ! Welcome to KAREN ONG XIN TZE portfolio.";
+  greeting.textContent = "Good afternoon! Welcome to My Portfolio.";
 } else {
-  greeting.textContent = "Good evening ! Welcome to KAREN ONG XIN TZE portfolio.";
+  greeting.textContent = "Good evening! Welcome to My Portfolio.";
 }
 
-// 2. Switch between light and dark themes
-const themeButton = document.querySelector("#theme-button");
-
-themeButton.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-
-  if (document.body.classList.contains("dark-mode")) {
-    themeButton.textContent = "Use light theme";
-  } else {
-    themeButton.textContent = "Use dark theme";
-  }
-});
-
-// 3 and 4. Update the progress bar and show the back-to-top button
+// 2. Update the progress bar and show the back-to-top button
 const progressBar = document.querySelector("#progress-bar");
 const backToTopButton = document.querySelector("#back-to-top");
 
@@ -43,12 +30,12 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// Scroll smoothly to the top when the button is clicked
+// 3. Scroll smoothly to the top when the button is clicked
 backToTopButton.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// 5. Highlight the navigation link when it is clicked
+// 4. Highlight the navigation link when it is clicked
 const navigationLinks = document.querySelectorAll("nav a");
 
 navigationLinks.forEach((link) => {
@@ -57,3 +44,7 @@ navigationLinks.forEach((link) => {
     link.classList.add("active");
   });
 });
+
+// 5. Show the current year
+document.querySelector("#current-year").textContent =
+  new Date().getFullYear();
