@@ -1,13 +1,38 @@
 // 1. Show a greeting based on the current time
+// Show and type a greeting based on the current time
 const greeting = document.querySelector("#greeting");
 const hour = new Date().getHours();
+let message;
 
 if (hour < 12) {
-  greeting.textContent = "Good morning! Welcome to My Portfolio.";
+  message = "Good morning! Welcome to My Portfolio.";
 } else if (hour < 18) {
-  greeting.textContent = "Good afternoon! Welcome to My Portfolio.";
+  message = "Good afternoon! Welcome to My Portfolio.";
 } else {
-  greeting.textContent = "Good evening! Welcome to My Portfolio.";
+  message = "Good evening! Welcome to My Portfolio.";
+}
+
+const reduceMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
+
+if (reduceMotion) {
+  greeting.textContent = message;
+} else {
+  greeting.textContent = "";
+  greeting.classList.add("typing");
+
+  let index = 0;
+
+  const typingTimer = window.setInterval(() => {
+    greeting.textContent += message.charAt(index);
+    index += 1;
+
+    if (index >= message.length) {
+      window.clearInterval(typingTimer);
+      greeting.classList.remove("typing");
+    }
+  }, 80);
 }
 
 // 2. Update the progress bar and show the back-to-top button
