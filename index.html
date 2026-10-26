@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -25,7 +25,7 @@
 
     #greeting.typing::after {
       content: "|";
-      margin-left: 4px;
+      margin-left: 10px;
       animation: cursor-blink 0.8s steps(1) infinite;
     }
 
@@ -33,10 +33,6 @@
       50% {
         opacity: 0;
       }
-
-      color: #000000;
-      font-family: "DM Serif Display", Georgia, serif;
-      font-size: 1.5rem;
   
     }
 
@@ -86,7 +82,7 @@
 
     .banner-image {
       display: block;
-      width: 100%;
+      width: 105%;
       height: auto;
     }
 
@@ -97,7 +93,7 @@
 
     #about img {
       display: block;
-      width: 100%;
+      width: 105%;
       height: auto;
     }
 
@@ -143,6 +139,64 @@
         padding: 24px 16px;
       }
     }
+ 
+    .projects-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 70px 24px;
+    }
+
+    .projects-heading {
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .projects-heading h2 {
+      color: #24323a;
+      font-family: "Lora", Georgia, serif;
+      font-weight: 600;
+      font-size: 3rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 32px;
+    }
+
+    .project-card {
+      color: #24323a;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .project-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .project-type {
+      margin: 12px 0 4px;
+      color: #70412f;
+      font-size: 0.9rem;
+    }
+
+    .project-card h3 {
+      margin-top: 4px;
+    }
+
+    .project-card:hover h3,
+    .project-card:focus-visible h3 {
+    text-decoration: underline;
+    }
+
+    @media (max-width: 700px) {
+   .project-grid {
+    grid-template-columns: 1fr;
+    }
+  }
 
   </style>
 
@@ -179,14 +233,48 @@
 
     <section id="about">
       <img
-       src="about_karen.jpg"
+       src="about_karen.png"
        alt="About Karen: background, skills, and experience"
       >
     </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <p>My projects will be added here as I complete them.</p>
+    <section id="projects" class="projects-section">
+      <div class="projects-heading">
+        <h2>My Project</h2>
+        <p>Here are some projects I have worked on.</p>
+     </div>
+
+      <div class="project-grid">
+        <a class="project-card" href="project-1.html">
+          <img src="healthmate-cover.png" alt="HealthMate app dashboard">
+          <p class="project-type">Team Project</p>
+          <h3>HealthMate — Health Tracking App</h3>
+        </a>
+
+        <a class="project-card" href="art-kuts.html">
+          <img src="ART KUTS_cover.png" alt="ART KUTS mobile app project">
+          <p class="project-type">Team Project</p>
+          <h3>ART KUTS — Mobile App</h3>
+        </a>
+
+        <a class="project-card" href="shaa.html">
+          <img src="shaa_cover.png" alt="Main menu of the Sarawak Heritage Auction Application">
+          <p class="project-type">Team Project</p>
+          <h3>Sarawak Heritage Auction Application</h3>
+        </a>
+
+        <a class="project-card" href="project-4.html">
+          <img src="Product_Desig_Cover.png" alt="Cover image for Project 4">
+          <p class="project-type">Personalised Product Design</p>
+          <h3>Summer Camp — Product Design</h3>
+          </a>
+
+        <a class="project-card" href="project-5.html">
+          <img src="Handbook_Design_Cover.png" alt="Cover image for Project 5">
+          <p class="project-type">Handbook Design</p>
+          <h3>Summer Camp — Handbook Disign</h3>
+        </a>
+      </div>
     </section>
 
     <section id="contact">
