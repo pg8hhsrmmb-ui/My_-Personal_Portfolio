@@ -82,8 +82,33 @@
 
     .banner-image {
       display: block;
-      width: 105%;
+      width: 100%;
       height: auto;
+    }
+
+    #about {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .about-button {
+      display: inline-block;
+      min-width: 280px;
+      margin-top: 12px;
+      padding: 22px 36px;
+      border-radius: 10px;
+      color: white;
+      background-color: #24323a;
+      font-size: 1.25rem;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .about-button:hover,
+    .about-button:focus-visible {
+      background-color: #70412f;
     }
 
     #about {
@@ -198,6 +223,74 @@
     }
   }
 
+    #contact.contact-section {
+  max-width: none;
+  margin: 0;
+  padding: 70px 24px;
+}
+
+.contact-card {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 12px 32px #24323a18;
+  text-align: center;
+}
+
+.contact-label {
+  color: #70412f;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+}
+
+.contact-card h2 {
+  margin: 12px 0;
+  color: #24323a;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.contact-message {
+  margin: 0 auto 24px;
+  max-width: 480px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.contact-button {
+  display: inline-block;
+  padding: 15px 32px;
+  border-radius: 9px;
+  color: #ffffff;
+  background-color: #24323a;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.contact-button:hover,
+.contact-button:focus-visible {
+  background-color: #70412f;
+}
+
+.contact-address {
+  margin-top: 20px;
+  color: #53616a;
+  font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+  #contact.contact-section {
+    padding: 48px 16px;
+  }
+
+  .contact-card {
+    padding: 36px 20px;
+  }
+}
   </style>
 
   <script src="index.js" defer></script>
@@ -209,7 +302,7 @@
 
     <nav aria-label="Main navigation">
       <a href="#home">Home</a>
-      <a href="#about">About Me</a>
+      <a href="about.html">About Me</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -232,10 +325,7 @@
 >
 
     <section id="about">
-      <img
-       src="about_karen.png"
-       alt="About Karen: background, skills, and experience"
-      >
+      <a class="about-button" href="about.html">Learn More About Me</a>
     </section>
 
     <section id="projects" class="projects-section">
@@ -257,7 +347,7 @@
           <h3>ART KUTS — Mobile App</h3>
         </a>
 
-        <a class="project-card" href="shaa.html">
+        <a class="project-card" href="project-3.html">
           <img src="shaa_cover.png" alt="Main menu of the Sarawak Heritage Auction Application">
           <p class="project-type">Team Project</p>
           <h3>Sarawak Heritage Auction Application</h3>
@@ -277,9 +367,20 @@
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email address: <a href="mailto:104621@siswa.unimas.my">104621@siswa.unimas.my</a></p>
+    <section id="contact" class="contact-section">
+      <div class="contact-card">
+        <p class="contact-label">LET'S CONNECT</p>
+          <h2>Contact Me</h2>
+        <p class="contact-message">
+          Have a question or want to get in touch? Send me an email.
+        </p>
+
+        <a class="contact-button" href="mailto:104621@siswa.unimas.my">
+          Email Karen
+        </a>
+
+        <p class="contact-address"></p>
+      </div>
     </section>
   </main>
 

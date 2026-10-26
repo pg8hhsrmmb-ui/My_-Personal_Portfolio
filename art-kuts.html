@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ART KUTS Project Gallery</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #24323a;
+      background-color: #f4f1e8;
+    }
+
+    header {
+      padding: 20px 24px;
+      background-color: #24323a;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+    }
+
+    header a:hover,
+    header a:focus-visible,
+    button:focus-visible,
+    #photo-carousel:focus-visible {
+      outline: 3px solid #cb694b;
+      outline-offset: 4px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .carousel-controls button {
+      z-index: 5;
+      flex: 0 0 44px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      background-color: #24323a;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .carousel-controls button:hover {
+      background-color: #70412f;
+    }
+
+    #photo-carousel {
+      position: relative;
+      width: min(100%, 700px);
+      height: min(72vh, 720px);
+      min-height: 440px;
+      touch-action: pan-y;
+      cursor: grab;
+      user-select: none;
+    }
+
+    #photo-carousel.is-dragging {
+      cursor: grabbing;
+    }
+
+    .photo-slide {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(58%, 340px);
+      height: 94%;
+      margin: 0;
+      padding: 10px;
+      overflow: hidden;
+      border-radius: 18px;
+      background-color: white;
+      box-shadow: 0 12px 30px #24323a30;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .photo-slide img {
+      display: block;
+      width: 100%;
+      height: calc(100% - 48px);
+      border-radius: 10px;
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    .photo-slide figcaption {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      color: #24323a;
+      font-size: 0.85rem;
+      line-height: 1.3;
+    }
+
+    .photo-slide.is-front {
+      z-index: 3;
+      opacity: 1;
+      transform: translate(calc(-50% + var(--drag-x, 0px)), -50%);
+    }
+
+    .photo-slide.is-middle {
+      z-index: 2;
+      opacity: 0.8;
+      transform: translate(calc(-50% - 22px), calc(-50% + 16px)) scale(0.94);
+    }
+
+    .photo-slide.is-back {
+      z-index: 1;
+      opacity: 0.55;
+      transform: translate(calc(-50% - 44px), calc(-50% + 32px)) scale(0.88);
+    }
+
+    .photo-slide.is-hidden {
+      z-index: 0;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+      pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+      #photo-carousel {
+        height: 68vh;
+        min-height: 400px;
+      }
+
+      .photo-slide {
+        width: 72%;
+      }
+
+      .carousel-controls {
+        gap: 6px;
+      }
+
+      .carousel-controls button {
+        flex-basis: 38px;
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .photo-slide {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="index.html#projects">← Back to Projects</a>
+  </header>
+
+  <main>
+    <h1>ART KUTS</h1>
+
+    <div class="carousel-controls">
+      <button id="previous-photo" type="button" aria-label="Previous photo">
+        ←
+      </button>
+
+      <div
+        id="photo-carousel"
+        role="region"
+        aria-label="ART KUTS app screenshots"
+        tabindex="0"
+      >
+        <figure class="photo-slide">
+          <img
+            src="art-kuts-welcome.png"
+            alt="Welcome screen of the Sarawak ART app"
+          >
+          <figcaption>Welcome Screen — Introduction to the Sarawak ART app.</figcaption>
+        </figure>
+
+        <figure class="photo-slide">
+          <img
+            src="art-kuts-map.png"
+            alt="Map screen showing ART routes and nearby places"
+          >
+          <figcaption>Map Screen — Shows ART routes and nearby places.</figcaption>
+        </figure>
+
+        <figure class="photo-slide">
+          <img
+            src="art-kuts-search.png"
+            alt="Search screen listing nearby destinations"
+          >
+          <figcaption>Search Screen — Finds places within a selected distance.</figcaption>
+        </figure>
+
+        <figure class="photo-slide">
+          <img
+            src="art-kuts-route.png"
+            alt="Route screen showing a suggested journey"
+          >
+          <figcaption>Route Screen — Displays a suggested route between locations.</figcaption>
+        </figure>
+
+        <figure class="photo-slide">
+          <img
+            src="art-kuts-ticket.png"
+            alt="Ticket screen showing trip and payment options"
+          >
+          <figcaption>Ticket Screen — Shows trip details and payment options.</figcaption>
+        </figure>
+      </div>
+
+      <button id="next-photo" type="button" aria-label="Next photo">
+        →
+      </button>
+    </div>
+  </main>
+
+  <script>
+    const carousel = document.querySelector("#photo-carousel");
+    const slides = Array.from(carousel.querySelectorAll(".photo-slide"));
+    const previousButton = document.querySelector("#previous-photo");
+    const nextButton = document.querySelector("#next-photo");
+
+    let currentIndex = 0;
+    let startX = null;
+
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.remove(
+          "is-front",
+          "is-middle",
+          "is-back",
+          "is-hidden"
+        );
+
+        const position = (index - currentIndex + slides.length) % slides.length;
+
+        if (position === 0) {
+          slide.classList.add("is-front");
+          slide.setAttribute("aria-hidden", "false");
+        } else if (position === 1) {
+          slide.classList.add("is-middle");
+          slide.setAttribute("aria-hidden", "true");
+        } else if (position === 2) {
+          slide.classList.add("is-back");
+          slide.setAttribute("aria-hidden", "true");
+        } else {
+          slide.classList.add("is-hidden");
+          slide.setAttribute("aria-hidden", "true");
+        }
+      });
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlides();
+    }
+
+    function showPrevious() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateSlides();
+    }
+
+    nextButton.addEventListener("click", showNext);
+    previousButton.addEventListener("click", showPrevious);
+
+    carousel.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse" && event.button !== 0) {
+        return;
+      }
+
+      startX = event.clientX;
+      carousel.classList.add("is-dragging");
+      carousel.setPointerCapture(event.pointerId);
+    });
+
+    carousel.addEventListener("pointermove", (event) => {
+      if (startX === null) {
+        return;
+      }
+
+      const distance = event.clientX - startX;
+      slides[currentIndex].style.setProperty("--drag-x", `${distance}px`);
+    });
+
+    function finishDragging(event) {
+      if (startX === null) {
+        return;
+      }
+
+      const distance = event.clientX - startX;
+
+      slides[currentIndex].style.removeProperty("--drag-x");
+      carousel.classList.remove("is-dragging");
+      startX = null;
+
+      if (distance < -60) {
+        showNext();
+      } else if (distance > 60) {
+        showPrevious();
+      }
+    }
+
+    carousel.addEventListener("pointerup", finishDragging);
+    carousel.addEventListener("pointercancel", finishDragging);
+
+    carousel.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        showNext();
+      } else if (event.key === "ArrowLeft") {
+        showPrevious();
+      }
+    });
+
+    updateSlides();
+  </script>
+</body>
+</html>
