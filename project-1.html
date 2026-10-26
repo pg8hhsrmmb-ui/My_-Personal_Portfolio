@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthMate — Health Tracking App</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #24323a;
+      background-color: #f4f1e8;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 20px 32px;
+      background-color: #24323a;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+    }
+
+    header a:hover,
+    header a:focus-visible {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+      text-align: center;
+    }
+
+    .project-type {
+      margin-bottom: 8px;
+      color: #70412f;
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .description {
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .carousel {
+      position: relative;
+      display: grid;
+      min-height: 650px;
+      margin: 36px auto 0;
+      place-items: center;
+      touch-action: pan-y;
+      user-select: none;
+    }
+
+    .slide {
+      position: absolute;
+      display: flex;
+      width: min(340px, 72vw);
+      height: 590px;
+      padding: 14px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 24px;
+      background: white;
+      box-shadow: 0 18px 45px rgb(36 50 58 / 18%);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(0) scale(0.8);
+      transition: transform 350ms ease, opacity 350ms ease;
+      cursor: grab;
+    }
+
+    .slide.is-front {
+      z-index: 3;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(var(--drag-x, 0px)) scale(1);
+    }
+
+    .slide.is-middle {
+      z-index: 2;
+      opacity: 0.75;
+      transform: translateX(95px) scale(0.88);
+    }
+
+    .slide.is-back {
+      z-index: 1;
+      opacity: 0.45;
+      transform: translateX(175px) scale(0.76);
+    }
+
+    .slide.is-hidden {
+      opacity: 0;
+      transform: translateX(230px) scale(0.7);
+    }
+
+    .carousel.is-dragging .slide.is-front {
+      cursor: grabbing;
+      transition: none;
+    }
+
+    .slide img {
+      display: block;
+      width: 100%;
+      height: 510px;
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    .slide p {
+      margin: 12px 0 0;
+      font-weight: bold;
+    }
+
+    .carousel-button {
+      position: absolute;
+      z-index: 5;
+      top: 50%;
+      display: grid;
+      width: 52px;
+      height: 52px;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      background-color: #24323a;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .carousel-button:hover,
+    .carousel-button:focus-visible {
+      background-color: #70412f;
+    }
+
+    .carousel-button.previous {
+      left: 0;
+    }
+
+    .carousel-button.next {
+      right: 0;
+    }
+
+    .carousel-help {
+      margin-top: 12px;
+      color: #52616a;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 650px) {
+      header {
+        padding: 16px 20px;
+      }
+
+      main {
+        padding: 36px 16px 48px;
+      }
+
+      .carousel {
+        min-height: 560px;
+        margin-top: 24px;
+      }
+
+      .slide {
+        width: min(290px, 70vw);
+        height: 500px;
+        padding: 10px;
+      }
+
+      .slide img {
+        height: 430px;
+      }
+
+      .slide.is-middle {
+        transform: translateX(55px) scale(0.88);
+      }
+
+      .slide.is-back {
+        transform: translateX(100px) scale(0.76);
+      }
+
+      .slide.is-hidden {
+        transform: translateX(140px) scale(0.7);
+      }
+
+      .carousel-button {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="index.html#projects">← Back to Projects</a>
+  </header>
+
+  <main>
+    <p class="project-type">Team Project</p>
+    <h1>HealthMate</h1>
+    <p class="description">
+      A health tracking app with features for monitoring water intake,
+      learning about health, and taking health quizzes.
+    </p>
+
+    <div
+      class="carousel"
+      id="healthmate-carousel"
+      tabindex="0"
+      aria-label="HealthMate project screenshots. Use the arrow keys or drag to browse."
+    >
+      <button
+        class="carousel-button previous"
+        id="previous-photo"
+        type="button"
+        aria-label="Show previous screenshot"
+      >&#8592;</button>
+
+      <figure class="slide">
+        <img src="healthmate-dashboard.png" alt="HealthMate dashboard showing points, daily progress, and quick actions">
+        <p>Dashboard</p>
+      </figure>
+
+      <figure class="slide">
+        <img src="healthmate-water-tracker.png" alt="HealthMate water intake tracking screen">
+        <p>Water Intake Tracker</p>
+      </figure>
+
+      <figure class="slide">
+        <img src="healthmate-quiz.png" alt="HealthMate health quiz question screen">
+        <p>Health Quiz</p>
+      </figure>
+
+      <figure class="slide">
+        <img src="healthmate-health-notes.png" alt="HealthMate health education notes screen">
+        <p>Health Education Notes</p>
+      </figure>
+
+      <button
+        class="carousel-button next"
+        id="next-photo"
+        type="button"
+        aria-label="Show next screenshot"
+      >&#8594;</button>
+    </div>
+
+    <p class="carousel-help">Drag or swipe the screenshots, or use the arrow buttons.</p>
+  </main>
+
+  <script>
+    const carousel = document.querySelector("#healthmate-carousel");
+    const slides = Array.from(carousel.querySelectorAll(".slide"));
+    const previousButton = document.querySelector("#previous-photo");
+    const nextButton = document.querySelector("#next-photo");
+
+    let currentIndex = 0;
+    let startX = null;
+
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.remove("is-front", "is-middle", "is-back", "is-hidden");
+
+        const position = (index - currentIndex + slides.length) % slides.length;
+
+        if (position === 0) {
+          slide.classList.add("is-front");
+        } else if (position === 1) {
+          slide.classList.add("is-middle");
+        } else if (position === 2) {
+          slide.classList.add("is-back");
+        } else {
+          slide.classList.add("is-hidden");
+        }
+      });
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlides();
+    }
+
+    function showPrevious() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateSlides();
+    }
+
+    nextButton.addEventListener("click", showNext);
+    previousButton.addEventListener("click", showPrevious);
+
+    carousel.addEventListener("pointerdown", (event) => {
+      if (event.target.closest("button")) return;
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+
+      startX = event.clientX;
+      carousel.classList.add("is-dragging");
+      carousel.setPointerCapture(event.pointerId);
+    });
+
+    carousel.addEventListener("pointermove", (event) => {
+      if (startX === null) return;
+
+      const distance = event.clientX - startX;
+      slides[currentIndex].style.setProperty("--drag-x", `${distance}px`);
+    });
+
+    function finishDragging(event) {
+      if (startX === null) return;
+
+      const distance = event.clientX - startX;
+      slides[currentIndex].style.removeProperty("--drag-x");
+      carousel.classList.remove("is-dragging");
+      startX = null;
+
+      if (distance < -50) showNext();
+      if (distance > 50) showPrevious();
+    }
+
+    carousel.addEventListener("pointerup", finishDragging);
+    carousel.addEventListener("pointercancel", finishDragging);
+
+    carousel.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") showNext();
+      if (event.key === "ArrowLeft") showPrevious();
+    });
+
+    updateSlides();
+  </script>
+</body>
+</html>
