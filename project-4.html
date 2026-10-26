@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summer Camp — Product Design</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #24323a;
+      background-color: #f4f1e8;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 18px 24px;
+      background-color: #24323a;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+    }
+
+    header a:hover,
+    header a:focus-visible {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 12px;
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .intro {
+      margin: 0 auto 32px;
+      max-width: 650px;
+      line-height: 1.6;
+    }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .carousel-controls button {
+      z-index: 5;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      background-color: #24323a;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .carousel-controls button:hover {
+      background-color: #70412f;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    .product-carousel:focus-visible {
+      outline: 3px solid #cb694b;
+      outline-offset: 4px;
+    }
+
+    .product-carousel {
+      position: relative;
+      width: min(100%, 760px);
+      height: 500px;
+      margin: 24px auto;
+      touch-action: pan-y;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .product-carousel.is-dragging {
+      cursor: grabbing;
+    }
+
+    .product-slide {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(74%, 560px);
+      height: 82%;
+      margin: 0;
+      padding: 14px;
+      overflow: hidden;
+      border-radius: 18px;
+      background-color: white;
+      box-shadow: 0 12px 30px #24323a30;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .product-slide img {
+      display: block;
+      width: 100%;
+      height: calc(100% - 42px);
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    .product-slide figcaption {
+      padding: 12px 4px 4px;
+      font-weight: bold;
+    }
+
+    .product-slide.is-front {
+      z-index: 3;
+      opacity: 1;
+      transform: translate(calc(-50% + var(--drag-x, 0px)), -50%);
+    }
+
+    .product-slide.is-middle {
+      z-index: 2;
+      opacity: 0.8;
+      transform: translate(calc(-50% - 24px), calc(-50% + 18px)) scale(0.94);
+    }
+
+    .product-slide.is-back {
+      z-index: 1;
+      opacity: 0.55;
+      transform: translate(calc(-50% - 48px), calc(-50% + 36px)) scale(0.88);
+    }
+
+    .product-slide.is-hidden {
+      z-index: 0;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+      pointer-events: none;
+    }
+
+    .carousel-hint {
+      color: #53616a;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 16px;
+      }
+
+      main {
+        padding: 36px 16px 60px;
+      }
+
+      .carousel-controls {
+        gap: 8px;
+      }
+
+      .carousel-controls button {
+        width: 40px;
+        height: 40px;
+      }
+
+      .product-carousel {
+        height: 390px;
+      }
+
+      .product-slide {
+        width: 78%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .product-slide {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="index.html#projects">← Back to Projects</a>
+  </header>
+
+  <main>
+    <h1>Summer Camp — Product Design</h1>
+    <p class="intro">
+      This is a collection of product design projects I created for a summer camp.
+    </p>
+
+    <div class="carousel-controls">
+      <button id="previous-photo" type="button" aria-label="Previous photo">
+        ←
+      </button>
+
+      <div
+        class="product-carousel"
+        id="product-carousel"
+        role="region"
+        aria-label="Product design photos"
+        tabindex="0"
+      >
+        <figure class="product-slide">
+          <img src="帆布包.png" alt="Canvas bag design">
+          <figcaption>Front of the canvas bag</figcaption>
+        </figure>
+
+        <figure class="product-slide">
+          <img src="帆布包2.png" alt="Second canvas bag design">
+          <figcaption>Back of the canvas bag</figcaption>
+        </figure>
+
+        <figure class="product-slide">
+          <img src="营衣%201.png" alt="Summer camp shirt design">
+          <figcaption>Camp Shirt</figcaption>
+        </figure>
+
+        <figure class="product-slide">
+          <img src="钥匙圈.png" alt="Keychain design">
+          <figcaption>Keychain</figcaption>
+        </figure>
+      </div>
+
+      <button id="next-photo" type="button" aria-label="Next photo">
+        →
+      </button>
+    </div>
+
+    <p class="carousel-hint">Drag with your mouse or swipe on your phone.</p>
+    <p id="photo-count" aria-live="polite"></p>
+  </main>
+
+  <script>
+    const carousel = document.querySelector("#product-carousel");
+    const slides = Array.from(carousel.querySelectorAll(".product-slide"));
+    const previousButton = document.querySelector("#previous-photo");
+    const nextButton = document.querySelector("#next-photo");
+    const photoCount = document.querySelector("#photo-count");
+
+    let currentIndex = 0;
+    let startX = null;
+
+    function updateSlides() {
+      slides.forEach((slide, index) => {
+        slide.classList.remove(
+          "is-front",
+          "is-middle",
+          "is-back",
+          "is-hidden"
+        );
+
+        const position = (index - currentIndex + slides.length) % slides.length;
+
+        if (position === 0) {
+          slide.classList.add("is-front");
+          slide.setAttribute("aria-hidden", "false");
+        } else if (position === 1) {
+          slide.classList.add("is-middle");
+          slide.setAttribute("aria-hidden", "true");
+        } else if (position === 2) {
+          slide.classList.add("is-back");
+          slide.setAttribute("aria-hidden", "true");
+        } else {
+          slide.classList.add("is-hidden");
+          slide.setAttribute("aria-hidden", "true");
+        }
+      });
+
+      photoCount.textContent =
+        `Photo ${currentIndex + 1} of ${slides.length}`;
+    }
+
+    function showNextPhoto() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlides();
+    }
+
+    function showPreviousPhoto() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateSlides();
+    }
+
+    nextButton.addEventListener("click", showNextPhoto);
+    previousButton.addEventListener("click", showPreviousPhoto);
+
+    carousel.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse" && event.button !== 0) {
+        return;
+      }
+
+      startX = event.clientX;
+      carousel.classList.add("is-dragging");
+      carousel.setPointerCapture(event.pointerId);
+    });
+
+    carousel.addEventListener("pointermove", (event) => {
+      if (startX === null) {
+        return;
+      }
+
+      const distance = event.clientX - startX;
+      slides[currentIndex].style.setProperty("--drag-x", `${distance}px`);
+    });
+
+    function finishDragging(event) {
+      if (startX === null) {
+        return;
+      }
+
+      const distance = event.clientX - startX;
+
+      slides[currentIndex].style.removeProperty("--drag-x");
+      carousel.classList.remove("is-dragging");
+      startX = null;
+
+      if (distance < -60) {
+        showNextPhoto();
+      } else if (distance > 60) {
+        showPreviousPhoto();
+      }
+    }
+
+    carousel.addEventListener("pointerup", finishDragging);
+    carousel.addEventListener("pointercancel", finishDragging);
+
+    carousel.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        showNextPhoto();
+      } else if (event.key === "ArrowLeft") {
+        showPreviousPhoto();
+      }
+    });
+
+    updateSlides();
+  </script>
+</body>
+</html>
